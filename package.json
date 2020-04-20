@@ -24,7 +24,10 @@
     "prettier:diff": "npm run prettier -- --list-different",
     "format": "npm run prettier -- --write",
     "eject": "react-scripts eject",
-    "validate": "npm-run-all --parallel prettier:diff test:coverage lint"
+    "validate": "npm-run-all --parallel prettier:diff test:coverage lint",
+    "mkntl": "npx netlify init",
+    "deploy:netlify": "netlify deploy --dir=./build -p",
+    "deploy": "npm run build && npm run deploy:netlify"
   },
   "eslintConfig": {
     "extends": "react-app"
