@@ -1,7 +1,7 @@
 import React from 'react'
 import {IconMovie, IconSearch} from './Icon'
 
-function SearchMovie({onMovieSearch}) {
+function SearchBox({onMovieSearch}) {
   let [title, setTitle] = React.useState('')
 
   return (
@@ -28,4 +28,4 @@ function SearchMovie({onMovieSearch}) {
   )
 }
 
-export default SearchMovie
+export default SearchBox
