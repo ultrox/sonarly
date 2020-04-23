@@ -15,6 +15,9 @@
 - [Api Management](https://www.themoviedb.org/settings/api)
 - [API Doc](https://developers.themoviedb.org/3/getting-started/introduction)
 
+`https://image.tmdb.org/t/p/w220_and_h330_face/cRU0PWIGULY4qbwbVFnrBminDv7.jpg`
+
+
 ## Other
 
 * [Design in  Figma](https://www.figma.com/file/IYfyQsGzX7HmnMHnV5q2bf/Sonarly?node-id=0%3A1)

@@ -1,62 +1,50 @@
 import React from 'react'
-import logo from './logo.svg'
-import {GenericStyles, AppWrapper, MainWrapper} from 'src/styles'
-import {Main} from 'src/styles/layout'
-import './App.css'
+import {Container} from 'src/styles/layout'
+import MovieList from 'src/components/MovieList'
+import SearchBox from 'src/components/SearchBox'
+import Header from 'src/components/Header'
+import 'src//styles/App.css'
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useParams,
-  Link,
-} from 'react-router-dom'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
-function App() {
+// let initState = {
+//   loading: false,
+//   error: null,
+//   movies: [],
+// }
+
+let movie = {
+  title: 'Batman is grate guy',
+  year: '2020',
+  id: 12,
+}
+
+export default function App() {
+  let movies = [movie]
+  let favorites = []
+  let later = []
+
   return (
     <Router>
-      <AppWrapper>
-        <GenericStyles />
-        <MainWrapper>
-          <Switch>
-            <Route exact path="/">
-              <Main>
-                <div className="App">
-                  <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <p>
-                      Edit <code>src/App.js</code> and save to reload.
-                    </p>
-                    <Link to="/123">Go to Random Page</Link>
-                    <a
-                      className="App-link"
-                      href="https://reactjs.org"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Learn React
-                    </a>
-                  </header>
-                </div>
-              </Main>
-            </Route>
-            <Route path="/:id">
-              <RandomDetails />
-            </Route>
-          </Switch>
-        </MainWrapper>
-      </AppWrapper>
+      <Header />
+
+      <Container>
+        <SearchBox onMovieSearch={() => {}} />
+      </Container>
+
+      <div>
+        <Switch>
+          <Route exact path="/">
+            <MovieList movies={movies} />
+          </Route>
+          <Route path="/later">
+            <MovieList movies={later} />
+          </Route>
+          <Route path="/favorites">
+            <MovieList movies={favorites} />
+          </Route>
+        </Switch>
+      </div>
     </Router>
   )
 }
-
-function RandomDetails() {
-  let {id} = useParams()
-
-  return (
-    <div>
-      <h3>ID: {id}</h3>
-    </div>
-  )
-}
-export default App
