@@ -1,4 +1,28 @@
 import React from 'react'
+import * as api from 'src/api'
+
+function useMovieSearch(query) {
+  let [loading, setLoading] = React.useState(false)
+  let [error, setError] = React.useState(null)
+  let [movies, setMovies] = React.useState(null)
+
+  React.useEffect(() => {
+    let current = true
+
+    if (query.length >= 1) {
+      setLoading(true)
+      setError(null)
+      api
+        .movieSearch(query)
+        .then(movies => current && setMovies(movies.results))
+        .catch(error => current && setError(error.message))
+        .finally(() => current && setLoading(false))
+    }
+    return () => (current = false)
+  }, [query])
+
+  return {movies, error, loading}
+}
 
 function toggleMovieProp(movies, options = {}) {
   let {prop, movie} = options
@@ -12,4 +36,4 @@ function toggleMovieProp(movies, options = {}) {
   }
   return movies
 }
-export {toggleMovieProp}
+export {useMovieSearch, toggleMovieProp}
