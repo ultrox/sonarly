@@ -1,5 +1,6 @@
 import React from 'react'
 import {IconFavorite, IconClock, IconCheck} from './Icon'
+import MoviePlaceholder from 'src/styles/placeholder.svg'
 import * as ls from 'src/components/useLocalStorage'
 import {toggleMovieProp} from 'src/utils'
 
@@ -49,10 +50,9 @@ function Movie({movie}) {
 function genPosterURL(pp, options = {w: '220', h: '330'}) {
   const {w, h} = options
 
-  let URL = pp
+  let posterUrl = pp
     ? `https://image.tmdb.org/t/p/w${w}_and_h${h}_face${pp}`
-    : `https://image.tmdb.org/t/p/w220_and_h330_face/eiVQORVyVuNNZHPAELuWtlXoQsD.jpg`
-
-  return URL
+    : MoviePlaceholder
+  return posterUrl
 }
 export default Movie
