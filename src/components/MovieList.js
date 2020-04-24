@@ -3,10 +3,13 @@ import {IconSadbaby} from 'src/components/Icon'
 import {Container} from 'src/styles/layout'
 import Movie from 'src/components/Movie'
 import ErrorOrEmptyMsg from 'src/components/ErrorOrEmptyMsg'
+import * as ls from 'src/components/useLocalStorage'
 
 const EMPTY_MSG = "You don't have any movies here."
 
 function MovieList({loading, error, movies, type = ''}) {
+  let myMovies = ls.get()
+
   if (error) {
     return (
       <ErrorOrEmptyMsg>
@@ -20,9 +23,12 @@ function MovieList({loading, error, movies, type = ''}) {
       <Container>
         {Array.isArray(movies) && movies.length > 0 ? (
           <div className="content-wrapper">
-            {movies.map(m => (
-              <Movie key={m.id} movie={m} />
-            ))}
+            {movies.map(m => {
+              m.favorited = myMovies[m.id]?.favorited ?? false
+              m.later = myMovies[m.id]?.later ?? false
+
+              return <Movie key={m.id} movie={m} />
+            })}
           </div>
         ) : (
           <ErrorOrEmptyMsg>

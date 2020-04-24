@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom'
 import 'src/styles/index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
+import * as ls from 'src/components/useLocalStorage'
+
+// this is needed for favorites & watch-later
+!ls.get() && ls.set({})
 
 if (process.env.NODE_ENV === 'development') {
   let fav = document.getElementById('favicon')

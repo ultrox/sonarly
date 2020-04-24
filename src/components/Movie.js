@@ -1,16 +1,37 @@
 import React from 'react'
-import {IconFavorite, IconClock} from './Icon'
+import {IconFavorite, IconClock, IconCheck} from './Icon'
+import * as ls from 'src/components/useLocalStorage'
+import {toggleMovieProp} from 'src/utils'
 
 function Movie({movie}) {
+  let [isFav, setFav] = React.useState(movie.favorited)
+  let [later, toggleLater] = React.useState(movie.later)
+
+  function toggleWatchLater() {
+    let movies = toggleMovieProp(ls.get(), {prop: 'later', movie})
+    ls.set(movies)
+    toggleLater(l => !l)
+  }
+
+  function toggleFavorited() {
+    let movies = toggleMovieProp(ls.get(), {prop: 'favorited', movie})
+    ls.set(movies)
+    setFav(l => !l)
+  }
+
   return (
     <div className="movie">
       <div className="poster-wrapper">
-        <button className="favorite-button">
-          <IconFavorite className="favorite-svg" />
+        <button className="favorite-button" onClick={toggleFavorited}>
+          <IconFavorite className={`favorite-svg ${isFav && 'favorited'}`} />
         </button>
 
-        <button className="history-button">
-          <IconClock className="history-button-svg" />
+        <button className="history-button" onClick={toggleWatchLater}>
+          {later ? (
+            <IconCheck className="history-button-svg" />
+          ) : (
+            <IconClock className="history-button-svg" />
+          )}
         </button>
 
         <img
@@ -26,7 +47,6 @@ function Movie({movie}) {
 }
 
 function genPosterURL(pp, options = {w: '220', h: '330'}) {
-  console.log(pp)
   const {w, h} = options
 
   let URL = pp
