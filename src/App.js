@@ -1,61 +1,28 @@
 import React from 'react'
-import {Container} from 'src/styles/layout'
-import MovieList from 'src/components/MovieList'
-import SearchBox from 'src/components/SearchBox'
-import Header from 'src/components/Header'
-import * as api from 'src/api'
 import 'src/styles/App.css'
-
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-
-// let initState = {
-//   loading: false,
-//   error: null,
-//   movies: [],
-// }
-
-let movie = {
-  title: 'Batman is grate guy',
-  year: '2020',
-  id: 12,
-}
+import WatchLaterScreen from 'src/screens/watch-later'
+import FavoriteScreen from 'src/screens/favorite'
+import DiscoverScreen from 'src/screens/discover'
+import NotFoundScreen from 'src/screens/not-found'
+import Header from 'src/components/Header'
+import {Route, Routes, BrowserRouter as Router} from 'react-router-dom'
 
 export default function App() {
-  const [movies, setMovies] = React.useState([])
-  const [error, setError] = React.useState(null)
-  const [isLoading, setLoading] = React.useState(false)
+  return <AppRoutes />
+}
 
-  function handleMovieSearch(query) {
-    setLoading(true)
-    setError(null)
-    api
-      .movieSearch(query)
-      .then(data => setMovies(data.results))
-      .catch(err => setError(err?.message ?? null))
-      .finally(() => setLoading(false))
-  }
-
+function AppRoutes() {
   return (
-    <Router>
-      <Header />
-
-      <Container>
-        <SearchBox onMovieSearch={handleMovieSearch} />
-      </Container>
-
-      <div>
-        <Switch>
-          <Route exact path="/">
-            <MovieList movies={movies} error={error} loading={isLoading} />
-          </Route>
-          <Route path="/later">
-            <p>Later</p>
-          </Route>
-          <Route path="/favorites">
-            <p>Favorites</p>
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <div>
+      <Router basename="/discover">
+        <Header />
+        <Routes>
+          <Route path="/" element={<DiscoverScreen />} />
+          <Route path="/later" element={<WatchLaterScreen />} />
+          <Route path="/favorites" element={<FavoriteScreen />} />
+          <Route path="*" element={<NotFoundScreen />} />
+        </Routes>
+      </Router>
+    </div>
   )
 }
