@@ -1,6 +1,10 @@
 :root {
   --red-800: #9b2c2c;
+  --pink-800: #97266d;
+  --pink-700: #b83280;
   --pink-600: #d53f8c;
+  --pink-400: #f687b3;
+  --pink-300: #fbb6ce;
   --gray-100: #f7fafc;
   --gray-200: #edf2f7;
   --gray-300: #e2e8f0;
@@ -35,7 +39,6 @@ body {
 * {
   box-sizing: border-box;
 }
-
 
 *::before,
 *::after {
