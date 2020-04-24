@@ -31,7 +31,7 @@ function Header() {
           activeClassName="header-nav_link--active"
           className="header-nav_link"
           aria-label="Go to search"
-          exact={true}
+          exact="true"
           to="/"
         >
           <IconSearch className="header-nav_link-svg" />
