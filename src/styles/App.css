@@ -54,6 +54,7 @@ body {
   color: var(--gray-700);
   cursor: pointer;
   height: 100%;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
 }
 
 .search-icon:focus {
@@ -82,6 +83,7 @@ body {
   z-index: 10;
 }
 .search-wrapper {
+  --border-radius: 0.5rem;
   color: var(--gray-700);
   position: relative;
   height: 3.5rem;
@@ -90,14 +92,14 @@ body {
   align-items: center;
   margin: 0 auto;
   margin-top: 1rem;
-  border-radius: 10px;
+  border-radius: var(--border-radius);
 }
 
 .search__input {
   font-size: 1.25rem;
   position: absolute;
   transition: box-shadow 0.2s;
-  border-radius: 0.5rem;
+  border-radius: var(--border-radius);
   box-shadow: var(--shadow);
   outline: none;
   border: none;
@@ -105,6 +107,7 @@ body {
   height: 100%;
   padding: 0 3.5rem;
 }
+
 .search__input:focus {
   box-shadow: 0 0 0 1.5px rgba(66, 153, 225, 0.5);
 }
