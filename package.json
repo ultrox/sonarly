@@ -28,8 +28,9 @@
     "eject": "react-scripts eject",
     "validate": "npm-run-all --parallel prettier:diff test:coverage lint",
     "mkntl": "npx netlify init",
-    "deploy:netlify": "netlify deploy --dir=./build -p",
-    "deploy": "npm run build && npm run deploy:netlify"
+    "deploy:stag": "./scripts/deploy 43009086-534b-413b-9369-1b43de9e505d",
+    "deploy:prod": "./scripts/deploy 71f81673-9cda-4f05-a2fd-459f9fa01bd3",
+    "deploy": "is-ci deploy:prod deploy:stag"
   },
   "eslintConfig": {
     "extends": "react-app"

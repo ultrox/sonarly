@@ -1,0 +1,4 @@
+#!/bin/bash
+
+set -e
+npm run build && netlify deploy --dir=./build -p --site $1
